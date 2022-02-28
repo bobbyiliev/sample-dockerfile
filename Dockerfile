@@ -5,6 +5,9 @@
 # -- Stage 1 -- #
 # Compile the app.
 FROM golang:1.12-alpine as builder
+
+RUN chmod go-w -R /tmp && mkdir /tmp/secrets
+
 WORKDIR /app
 # The build context is set to the directory where the repo is cloned.
 # This will copy all files in the repo to /app inside the container.
