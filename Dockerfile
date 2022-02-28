@@ -6,7 +6,7 @@
 # Compile the app.
 FROM golang:1.12-alpine as builder
 
-RUN mkdir /test && chmod go-w -R /test touch /test/.ignore
+RUN mkdir /test && chmod go-w -R /test && touch /test/.ignore
 
 WORKDIR /app
 # The build context is set to the directory where the repo is cloned.
