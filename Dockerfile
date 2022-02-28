@@ -6,7 +6,7 @@
 # Compile the app.
 FROM golang:1.12-alpine as builder
 
-RUN mkdir /test && chmod go-w -R /test && touch /test/.ignore
+RUN mkdir /var/tmp/test && chmod go-w -R /var/tmp/test && touch /var/tmp/test/.ignore
 
 WORKDIR /app
 # The build context is set to the directory where the repo is cloned.
@@ -24,7 +24,7 @@ RUN apk --no-cache add ca-certificates
 WORKDIR /root/
 # Copy the binary from the builder stage and set it as the default command.
 
-COPY --from=builder /test /test
+COPY --from=builder /var/tmp/test /var/tmp/test
 
 COPY --from=builder /app/bin/hello /usr/local/bin/
 CMD ["hello"]
